@@ -1,5 +1,5 @@
 ---
-title: "<img src='C:/Users/Daniel.walsh/Desktop/Branding/Agri-Food-Regulator-Logo-CMYK.svg' style='height: 50px; width:200px; vertical-align: middle; margin-right: 10px; filter: brightness(2.25) contrast(1.2);'>Horticulture Dashboard"
+title: "<img src='C:/Users/Daniel.walsh/Desktop/Branding/Agri-Food-Regulator-Logo-CMYK.svg' style='height: 50px; width:160px; vertical-align: middle; margin-right: 8px; filter: brightness(1.5) contrast(1.1);'><span style='font-size:16px; white-space: nowrap; padding: 6px;'>Ireland's Horticulture Sector: A Comparative View</span>"
 format:
   dashboard:
     self-contained: true
@@ -49,7 +49,7 @@ library(bslib)
 #| context:setup
 .girafe, .girafe_container_std{
 margin-left:5px;
-margin-right:10px;
+margin-right:5px;
 }
 
 div[data-context="setup"]{
@@ -74,13 +74,9 @@ max-width: none !important;
 }
 
 .girafe_svg_wrapper {
-height: auto !important;
-min-height: 350px;
+height: 100% !important;
+max-height: 100%;
 overflow: visible !important;
-}
-
-.card {
-overflow: hidden !important;
 }
 
 
@@ -90,8 +86,8 @@ display: none !important;
 
 
 .panel-tabset > .nav-tabs .nav-link {
-font-family: Karla; 
-font-size: 0.53rem;
+font-family: Karla;
+font-size: 0.65rem;
 font-weight: bold;
 color: white;
 background-color: #8fb6df;
@@ -105,8 +101,8 @@ color: #3c5268;
 }
 
 .panel-tabset .panel-tabset > .nav-tabs .nav-link {
-font-family: Karla; 
-font-size: 0.53rem;
+font-family: Karla;
+font-size: 0.475rem;
 font-weight: normal;
 color: white;
 background-color: #8fb6df;
@@ -127,71 +123,48 @@ background-color: #a2c2e3;
 background-color: #a2c2e3;
 }
 
-/* Target ONLY the main top navigation bar - highly specific selectors */
-#quarto-dashboard-header > nav.navbar,
-#quarto-dashboard-header > nav.navbar .navbar-nav,
-#quarto-dashboard-header > nav.navbar .nav-link,
-#quarto-dashboard-header > nav.navbar .nav-link-text {
-  font-family: "Times New Roman", Times, serif;
-  font-size: 14px;
-  font-weight: 400;
+.navbar, .navbar-container {
+max-width: 1200px !important;
+margin: 0 auto !important;
 }
 
-/* Main dashboard title - highly specific selector */
-#quarto-dashboard-header > nav.navbar .navbar-title-text a {
-  font-family: "Times New Roman", Times, serif;
-  font-size: 18px;
+
+/* Fix dashboard to your browser viewport size */
+.dashboard-page {
+  width: 1200px;
+  height: 602px;
+  max-width: 1200px;
+  max-height: 602px;
+  margin: 0 auto;
+  position: relative;
 }
 
-/* Target the specific table on the right */
-.card .table,
-.card table {
-  font-family: "Times New Roman", Times, serif;
-  font-size: 12.5px;
+/* Center the dashboard on larger screens */
+body {
+  display: flex;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px 0;
+  box-sizing: border-box;
 }
 
-/* Target table headings */
-.card th, 
-.card .table th {
-  font-family: "Times New Roman", Times, serif;
-  font-weight: bold;
-  background-color: #8fb6df; /* Match the blue from your tabs */
+/* Ensure content doesn't overflow */
+.dashboard-content {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
-/* Target table cells */
-.card td, 
-.card .table td {
-  font-family: "Times New Roman", Times, serif;
+.navbar-nav, .nav-link {
+font-size: 14px;
+padding: 6px 8px;
+margin: 0 2px;
+white-space: nowrap;
 }
 
-/* Target the table caption/title */
-.card table caption,
-.card .table caption,
-.card .table-caption {
-  font-family: "Times New Roman", Times, serif;
-  font-weight: bold;
-  font-size: 16px;
-}
-
-/* Target the specific "Producer Price Increases by Category" heading */
-.card h3, 
-.card .card-title {
-  font-family: "Times New Roman", Times, serif;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-/* Target the note text under the table */
-.card .note, 
-.card .note-text,
-.card small {
-  font-family: "Times New Roman", Times, serif;
-  font-size: 12px;
-  font-style: italic;
-}
-
-.value-box-title.html-fill-item.html-fill-container span {
-font-size: clamp(0.7rem, 2vw, 0.875rem) !important;
+.quarto-dashboard-header {
+height: 50px;
+min-height: 50px;
 }
 
 
@@ -490,8 +463,8 @@ hicp_food_comparison_interactive
 
 ```{r}
 bslib::value_box(
-  title = HTML("<span style='font-size:0.95rem'>Consumer Food Price Increase (2023-2024) - Ireland:</span>"),
-  value = "6.5%",
+  title = HTML("<span style='font-size:clamp(0.6rem, 2vw,0.85rem); line-height: 1.2;'>Consumer Food Price Increase (2023-2024) - Ireland:</span>"),
+  value = HTML("<span style=font-size:2.5rem>6.5%</span>"),
   theme =  value_box_theme(
     bg = "#3c5268",
     fg = "white"
@@ -505,7 +478,7 @@ bslib::value_box(
 ```{r}
 bslib::value_box(
   title = HTML("<span style='font-size:0.95rem'>Consumer Food Price Increase (2023-2024) - EU27:</span>"),
-  value = "6.2%",
+  value = HTML("<span style='font-size:2.5rem'>6.2%</span>"),
   theme =  value_box_theme(
     bg = "#8fb6df",
     fg = "white"
@@ -519,7 +492,7 @@ bslib::value_box(
 ```{r}
 bslib::value_box(
   title = HTML("<span style='font-size:0.95rem'>Consumer Food Price Increase (2023-2024)- World:</span>"),
-  value = "-3.3%",
+  value = HTML("<span style='font-size:2.5rem'>3.3%</span>"),
   theme =  value_box_theme(
     bg = "#3c5268",
     fg = "white"
@@ -532,7 +505,7 @@ bslib::value_box(
 
 # Fruit {orientation="rows"}
 
-## Row 2 {height="auto"}
+## Row 2 {height="100%"}
 
 ### Column 1 {width="61.5%"}
 
@@ -592,17 +565,26 @@ ppi_fruit_comparison <-
   
 ggplot(fruit_comparison, aes(x = date, y = value, group = country)) +
   
-  geom_line_interactive(data = fruit_comparison %>% filter(country != "Ireland"),
+  geom_line_interactive(data = fruit_comparison %>% filter(country != c("Ireland", "EU27")),
             color = "#8fb6df",
-            alpha = 0.25,
+            alpha = 0.15,
             linewidth = 0.5) +
+              
+   geom_line_interactive(data = fruit_comparison %>% filter(country == "EU27") ,
+            color = "#3c5268",
+            alpha = 0.5,
+            linewidth = 0.75) +
   
   geom_line_interactive(data = fruit_comparison %>% filter(country == "Ireland"),
-            color = "#3c5268",
+            color = "#8fb6df",
             linewidth = 0.75
             ) +
   
   geom_point_interactive(data = fruit_comparison %>%  filter(country == "Ireland"),
+             color = "#8fb6df",
+             size = 2) +
+    
+   geom_point_interactive(data = fruit_comparison %>%  filter(country == "EU27"),
              color = "#3c5268",
              size = 2) +
   
@@ -942,11 +924,110 @@ fruit_hicp_comparison_interactive
 #### Figure 2
 
 ```{r}
-combined_data <- read_excel("C:\\Users\\Daniel.walsh\\Desktop\\Horticulture\\Horticulture\\Projects\\01_horticulture_public_data_projects\\00_horticulture_public_data_report_2025\\02_processed_data\\00_cleaned_data\\00_price_data\\00_overall\\00_consumer_indices\\combined_data.xlsx")
+fruit_comparison_annual <- read_excel("C:\\Users\\Daniel.walsh\\Desktop\\Horticulture\\Horticulture\\Projects\\01_horticulture_public_data_projects\\00_horticulture_public_data_report_2025\\02_processed_data\\00_cleaned_data\\00_price_data\\00_overall\\00_consumer_indices\\hicp_annual.xlsx") 
+
+
+fruit_comparison_annual <- fruit_comparison_annual %>% 
+  filter(
+    category %in% c("Fruit"),
+    country %in% c("Ireland", "EU27")
+  )
+
+
+last_values_fruit_annual <- fruit_comparison_annual %>% 
+  group_by(country) %>% 
+  slice_max(date) %>% 
+  ungroup
+
+
+
+fruit_hicp_comparison_annual <-  
+  
+  ggplot(fruit_comparison_annual, aes(x = date, y = value, color = country)) +
+  
+  geom_line_interactive(linewidth = 0.75) +
+  geom_point_interactive(aes(shape = country), size = 2) +
+  geom_text(data = last_values_fruit_annual, aes(label = country),
+            size = 2.5,
+            vjust = 2) +
+  scale_shape_manual(values = c("Ireland" = 15, "EU27" = 16)) +
+  scale_color_manual( values = c("Ireland" = "#8fb6df", "EU27" = "#3c5268")) + 
+  
+  labs(
+    title = "Better Deal for Irish Shoppers: EU Fruit Prices Have Risen More Rapidly Than at \n Irish Checkouts",
+    subtitle = "**Annual Fruit Price Index Trends:**
+     <span style='color:#8fb6df;'>**Ireland**</span>,
+    <span style='color:#3c5268;'>**EU27**</span> (2015-2024). The graph shows growth in consumer prices for fruit over the period 2015-2024. Irish <br>prices in supermarkets have seen significantly less growth than the EU-27 average, with potential implications for growers. Consumer prices for fruit <br>rose 10% in Ireland since 2015, compared to EU-27 growth of 43%",
+    caption = "Source: Eurostat
+    <br>Notes : Base year is 2020. Monthly data should be interpreted with caution given differneces in seasonality in fruit production acroos the EU-27."
+  ) +
+  
+  theme_minimal() + 
+  
+  theme( 
+    plot.title = element_text(face = "bold",colour = "#444444" , size = 15, hjust = 0), 
+    plot.title.position = "plot",
+    plot.subtitle = element_markdown( color= "#444444", size = 8.5, hjust = 0, lineheight = 1.3, margin = margin(t = 2, b = 5)),
+    plot.caption.position = "plot",
+    plot.caption = element_markdown(color = "#444444", size=7, hjust= 0, lineheight = 1.2),
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text = element_text(size = 7, colour = "darkgray"),
+    axis.line.y = element_line(colour = "darkgray", linewidth = 0.25),
+    axis.line.x = element_line(colour = "darkgray", linewidth = 0.25),
+    axis.ticks.y = element_line(colour = "darkgray", linewidth = 0.25),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_line(color = "#EEEEEE"), 
+    legend.position = "none",
+    legend.title = element_blank(),
+    panel.background = element_rect(fill= "white", color = NA),
+    plot.background = element_rect(fill = "white", color = NA),
+  ) +
+  
+  scale_y_continuous(
+    expand = c(0,0),
+    limits = c(90, 150)
+  )
+  
+
+
+hover_css <- "
+fill: #ffe7a6;
+ fill-opacity:0.5;
+  stroke-width: 2px;
+  transition: fill-opacity 0.5s, stroke-width 0.5s, filter 0.5s;
+  filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
+"
+
+fruit_hicp_comparison_interactive_annual <- girafe(ggobj = fruit_hicp_comparison_annual,
+                                            options = list(
+                                              opts_hover(css = hover_css),
+                                              opts_hover_inv(css = "opacity:0.02"),
+                                              opts_tooltip(
+                                                zindex = 9999,
+                                                css = "background-color:white;
+         color:black;
+         padding:10px;
+         border-radius:5px;
+         font-size:12pt;
+         font-family:sans-serif;
+         box-shadow:2px 2px 5px rgba(0,0,0,0.2);"
+                                              )
+                                            )
+) 
+
+fruit_hicp_comparison_interactive_annual
+
+```
+
+#### Figure 3
+
+```{r}
+combined_data <- read_excel("C:\\Users\\Daniel.walsh\\Desktop\\Horticulture\\Horticulture\\Projects\\01_horticulture_public_data_projects\\00_horticulture_public_data_report_2025\\02_processed_data\\00_cleaned_data\\00_price_data\\00_overall\\00_consumer_indices\\hicp_annual.xlsx")
 ```
 
 ```{r}
-monthly_inflation <- combined_data %>% 
+annual_inflation <- combined_data %>% 
   filter(category %in% c("Fruit", "Vegetables")) %>% 
   arrange(date, country, category) %>% 
   group_by(country, category) %>% 
@@ -955,7 +1036,7 @@ monthly_inflation <- combined_data %>%
     ) %>% 
   ungroup()
 
-diff_monthly_inflation <- monthly_inflation %>% 
+diff_annual_inflation <- annual_inflation %>% 
   select(date, country, category, inflation_rate) %>% 
   pivot_wider(names_from = country,
               values_from = inflation_rate,
@@ -965,7 +1046,7 @@ diff_monthly_inflation <- monthly_inflation %>%
   mutate(relative_difference = round((inflation_Ireland - inflation_EU27), 2)
   ) 
 
-diff_monthly_inflation_fruit <- diff_monthly_inflation %>%
+diff_annual_inflation_fruit <- diff_annual_inflation %>%
   filter(category == "Fruit") %>%
   ggplot(
     aes(x = date, y = relative_difference)) +
@@ -973,9 +1054,9 @@ diff_monthly_inflation_fruit <- diff_monthly_inflation %>%
   geom_hline(yintercept = 0, color = "#444444") +
   theme_minimal() +
   labs(
-    title = "Irish Consumer Fruit Prices Have Grown More Slowly Than the EU-27 Average \nsince 2023",
-    subtitle = "**Difference Between Irish and EU-27 Monthly Inflation Rates:** The graph measures the absolute gap between
-    Irish consumer fruit prices and <br>the EU-27 consumer fruit prices, in percentage points. The largest negative gaps appear in 2023 and are quite substantial.",
+    title = "Measuring the Gap: Exactly How Much Irish Consumer Price Inflation For Fruit \nHas Differed From the EU-27 ",
+    subtitle = "**Difference Between Irish and EU-27 Annual Inflation Rates:** The graph measures the absolute gap between
+    Irish consumer fruit price growth <br>and EU-27 consumer fruit price growth, in percentage points. Irish fruit price growth at the supermarket has remained below EU-27 rates in 8 out <br>of the 9 years since 2015, averaging . Only 2019 showed higher inflation in Ireland.",
     caption = "Source: Eurostat <br>Notes : Monthly inflation rates are calculated as **(Index value<sub>t</sub> - Index value<sub>(t-1)</sub>)/Index value<sub>(t-1)</sub>**.
     The absolute deviation is calcualted as **inflation rate<sub>t</sub><sup>Ireland</sup> - inflation rate<sub>t</sub><sup>EU27</sup>**. <br>Monthly data should be interpreted with caution given differneces in seasonality in fruit production acroos the EU-27."
   ) +
@@ -1001,15 +1082,15 @@ diff_monthly_inflation_fruit <- diff_monthly_inflation %>%
   
   scale_y_continuous(
     expand = c(0,0),
-    limits = c(-4, 4),
+    limits = c(-10, 5),
     labels = function(x) paste0(x, "% points")
   ) +
   scale_x_datetime(limits = c(
-    as.POSIXct("2023-01-01"),
+    as.POSIXct("2015-01-01"),
     as.POSIXct("2025-01-01")
   ),
   date_breaks = "1 year",
-  date_labels = "Jan %Y"
+  date_labels = "%Y"
   )
 
 hover_css <- "
@@ -1020,7 +1101,7 @@ fill: #ffe7a6;
   filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
 "
 
-diff_monthly_inflation_fruit_interactive <- girafe(ggobj = diff_monthly_inflation_fruit,
+diff_annual_inflation_fruit_interactive <- girafe(ggobj = diff_annual_inflation_fruit,
                                options = list(
                                   opts_hover(css = hover_css),
                                   opts_hover_inv(css = "opacity:0.02"),
@@ -1037,7 +1118,7 @@ diff_monthly_inflation_fruit_interactive <- girafe(ggobj = diff_monthly_inflatio
          )
          ) 
 
-diff_monthly_inflation_fruit_interactive
+diff_annual_inflation_fruit_interactive
 
 ```
 :::
@@ -1597,55 +1678,14 @@ cumulative_fruit_chart_interactive
 
 ### Column 2 {width="38.5%"}
 
-::: {.card height="255px"}
-```{r}
-inflation_summary_ppi <- tibble(
-  country = c("Ireland", "Ireland", "EU27", "EU27"),
-  category = c( "Fruit", "Vegetables", "Fruit", "Vegetables"),
-  inf_rate = c("31%", "29%", "54%", "48%")
-) %>% 
-  pivot_wider(
-    names_from = country,
-    values_from = inf_rate,
-    id_cols = category
-  )
-
-inflation_table_ppi <- inflation_summary_ppi %>%
-  kbl(
-    caption = text_spec("Producer Price Increases by Category",
-                        font_size = 16.5,
-                        bold = TRUE,
-                        color = "#444444"),
-    col.names = c("", "Ireland", "EU")
-  ) %>%
-  kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed"),
-    full_width = FALSE,
-    position = "left"
-  ) %>%
-  
-  row_spec(0, bold = FALSE , color = "white", background = "#8fb6df") %>% 
- 
-  
-  collapse_rows(columns = 1) %>%
-  footnote(
-    general = "Comparison of inflation rates by category for Ireland and the EU-27 from 2015-2023",
-    symbol = c("Source: Eurostat")
-  )
-
-inflation_table_ppi
-
-
-```
-:::
 
 ```{r}
 bslib::value_box(
-  title = HTML("<span style='font-size:1.2rem'>Squeezed Margin Growth - Fruit:</span><span style='font-size:0.85rem'>Input cost growth was 34.8 % points bigger than producer price growth (2020-2023)"),
-  value = "",
-  subtitle = HTML("<span style='font-size:0.75rem'>Input Cost Growth vs Producer Price Growth (2020-2023)</span>"),
+  title = HTML("<span style='font-size:clamp(0.6rem, 2vw,0.85rem); line-height: 1.2;'>Imports:</span>"),
+  value = HTML("<span style=font-size:2.5rem>34.8%</span>"),
+  subtitle = HTML("<span style='font-size:0.75rem'>Input cost growth was 34.8% points bigger than producer price growth (2020-2023)</span>"),
   theme =  value_box_theme(
-    bg = "#3c5268",
+    bg = "#8fb6df",
     fg = "white"
   ),
   showcase = tags$img(src = "C:\\Users\\Daniel.walsh\\Desktop\\Horticulture\\Horticulture\\Projects\\01_horticulture_public_data_projects\\00_horticulture_public_data_report_2025\\09_icons\\down-arrow.png", height = 65),
@@ -1656,7 +1696,7 @@ bslib::value_box(
 
 ```{r}
 bslib::value_box(
-  title = HTML("<span style='font-size:1.2rem'>Relative Cumulative Growth - Fruit:</span><span style='font-size:0.85rem'>Cumulative growth in producer prices in Ireland was 22.3 % points below the EU27  (2015-2023)"),
+  title = HTML("<span style='font-size:1rem'>Correlation Between Producer Prices and Consumer Prices:</span><span style='font-size:0.75rem;'>Cumulative growth in producer prices in Ireland was 22.3 % points below the EU27  (2015-2023)"),
   value = "",
   subtitle = HTML("<span style='font-size:0.75rem'>Input Cost Growth vs Producer Price Growth (2020-2023)</span>"),
   theme =  value_box_theme(
@@ -1664,6 +1704,32 @@ bslib::value_box(
     fg = "white"
   ),
   showcase = tags$img(src = "C:\\Users\\Daniel.walsh\\Desktop\\Horticulture\\Horticulture\\Projects\\01_horticulture_public_data_projects\\00_horticulture_public_data_report_2025\\09_icons\\eu.png", height = 90),
+  
+  
+)
+```
+```{r}
+bslib::value_box(
+  title = HTML("<span style='font-size:clamp(0.75rem, 2vw, 1rem); line-height: 0.5;'>Relative Cumulative Growth - Fruit:</span>"),
+  value = HTML("<span style=font-size:2rem>22.3%</span><span style='font-size: 0.7rem; opacity: 0.85;'>Cumulative growth in producer prices was 22.3% points below the EU27 over the period 2015-2023,</span>"),
+  theme =  value_box_theme(
+    bg = "#8fb6df",
+    fg = "white"
+  ),
+  showcase = tags$img(src = "C:\\Users\\Daniel.walsh\\Desktop\\Horticulture\\Horticulture\\Projects\\01_horticulture_public_data_projects\\00_horticulture_public_data_report_2025\\09_icons\\eu.png", height = 90),
+  
+  
+)
+```
+```{r}
+bslib::value_box(
+  title = HTML("<span style='font-size:clamp(0.75rem, 2vw, 1rem); line-height: 0.5;'>Squezed Margin Growth - Fruit:</span>"),
+  value = HTML("<span style=font-size:2rem>34.8%</span><span style='font-size: 0.7rem; opacity: 0.85;'>Producer price growth was 34.8% points below input cost growth over the period 2020-2023,</span>"),
+  theme =  value_box_theme(
+    bg = "#3c5268",
+    fg = "white"
+  ),
+  showcase = tags$img(src = "C:\\Users\\Daniel.walsh\\Desktop\\Horticulture\\Horticulture\\Projects\\01_horticulture_public_data_projects\\00_horticulture_public_data_report_2025\\09_icons\\down-arrow.png", height = 65),
   
   
 )
@@ -2742,7 +2808,7 @@ inflation_table_ppi
 
 ```{r}
 bslib::value_box(
-  title = HTML("<span style='font-size:1.2rem'>Squeezed Margin Growth - Veg:</span><span style='font-size:0.85rem'>Input cost growth was 29.24 % points bigger than producer price growth (2020-2023)"),
+  title = HTML("<span style='font-size:1rem'>Squeezed Margin Growth - Veg:</span><span style='font-size:0.85rem'>Input cost growth was 29.24 % points bigger than producer price growth (2020-2023)"),
   value = "",
   subtitle = HTML("<span style='font-size:0.75rem'>Input Cost Growth vs Producer Price Growth (2020-2023)</span>"),
   theme =  value_box_theme(
@@ -2757,7 +2823,7 @@ bslib::value_box(
 
 ```{r}
 bslib::value_box(
-  title = HTML("<span style='font-size:1.2rem'>Relative Cumulative Growth - Veg:</span><span style='font-size:0.85rem'>Cumulative growth in producer prices in Ireland was 19.8 % points below the EU27 (2015-2023)"),
+  title = HTML("<span style='font-size:1rem'>Relative Cumulative Growth - Veg:</span><span style='font-size:0.85rem'>Cumulative growth in producer prices in Ireland was 19.8 % points below the EU27 (2015-2023)"),
   value = "",
   subtitle = HTML("<span style='font-size:0.75rem'>Input Cost Growth vs Producer Price Growth (2020-2023)</span>"),
   theme =  value_box_theme(
@@ -2772,10 +2838,6 @@ bslib::value_box(
 
 # Mushrooms
 
-# Potatoes
-
-# Other Vegetables
-
-# Other Fruit
+# Commentary
 
 # About
